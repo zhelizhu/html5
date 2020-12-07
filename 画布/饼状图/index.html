@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>饼状图</title>
+	</head>
+	<style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+	</style>
+	<body>
+		<div>
+			<canvas width="700" height="400"></canvas>
+		</div>
+	</body>
+	<script>
+		window.onload = function(){
+
+			function PieChart(ctx,radius){
+
+            this.ctx = ctx||document.querySelector("canvas").getContext("2d");
+            
+            this.width = this.ctx.canvas.width;
+            
+            this.height = this.ctx.canvas.height;
+            
+            this.x = this.width/2+100;
+            
+            this.y = this.height/2;
+            
+            this.radius = radius;
+            
+            this.outLong = radius/8;
+            
+            this.spaceX = 20;
+            
+            this.spaceY = 20;
+            
+            this.squareWidth = 40;
+            
+            this.squareHeight = 20;
+            
+            this.spanY = 25;
+            
+			};
+			PieChart.prototype.init = function(data){
+				this.Pie(data);
+            };
+            
+			PieChart.prototype.Pie = function(data){
+
+                var that = this;
+                
+                var angleList = this.Angle(data);
+                
+                var startAngle = 0;
+                
+				angleList.forEach(function(item,index){
+
+                    var color = that.Color();
+                    
+                    that.ctx.beginPath();
+                    
+                    that.ctx.arc(that.x,that.y,that.radius,startAngle,startAngle+item.angle);
+                    
+                    that.ctx.lineTo(that.x,that.y);
+                    
+                    that.ctx.fillStyle = color
+                    
+                    that.ctx.fill();
+                    
+                    that.Title(startAngle,item.angle,color,item.title);
+                    
+                    startAngle+=item.angle;
+                    
+                });
+                
+            };
+            
+			PieChart.prototype.Title = function(startAngle,angle,color,title){
+
+                var out = this.outLong+this.radius;
+                
+                var du = startAngle+angle/2;
+                
+                var outX = this.x+out*Math.cos(du);
+                
+                var outY = this.y+out*Math.sin(du);
+                
+                this.ctx.beginPath();
+                
+                this.ctx.moveTo(this.x,this.y);
+                
+                this.ctx.lineTo(outX,outY);
+                
+                this.ctx.strokeStyle = color;
+                
+                this.ctx.font = '14px Microsoft Yahei';
+                
+                var textWidth = this.ctx.measureText(title).width;
+                
+                this.ctx.textBaseline = "bottom";
+                
+				if(outX>this.x){
+
+                    this.ctx.textAlign = "left";
+                    
+                    this.ctx.lineTo(outX+textWidth,outY);
+                    
+				}else{
+
+                    this.ctx.textAlign = "right";
+                    
+                    this.ctx.lineTo(outX-textWidth,outY);
+                    
+				}
+                this.ctx.stroke();
+                
+                this.ctx.fillText(title,outX,outY);
+                
+				this.List(title);
+            };
+            
+			PieChart.prototype.List = function(title){
+
+                this.ctx.fillRect(this.spaceX,this.spaceY,this.squareWidth,this.squareHeight);
+                
+                this.ctx.textAlign = "left";
+                
+                this.ctx.textBaseline = "middle";
+                
+                this.ctx.fillText(title,this.spaceX+this.squareWidth+10,this.spaceY+this.squareHeight/2);
+                
+                this.spaceY +=this.spanY;	
+                
+            };
+            
+			PieChart.prototype.Angle = function(data){
+
+                var total = 0;
+                
+				data.forEach(function(item,index){
+
+                    total+=item.per;
+                    
+                });
+                
+				data.forEach(function(item,index){
+
+                    item.angle = item.per/total*2*Math.PI;
+                    
+				});
+				return data;
+            };
+            
+			PieChart.prototype.Color = function(){
+
+                var r = Math.floor(Math.random()*256);
+                
+                var g = Math.floor(Math.random()*256);
+                
+                var b = Math.floor(Math.random()*256);
+                
+				return 'rgb('+r+','+g+','+b+')';
+			};
+			var data = [
+				{
+					title:'15~20岁',
+					per:10
+				},
+				{
+					title:'25~25岁',
+					per:8
+				},
+				{
+					title:'25~30岁',
+					per:20
+				},
+				{
+					title:'30岁以上',
+					per:20
+				}
+            ];
+            
+            var ctx = document.querySelector("canvas").getContext("2d");
+            
+            var pieChart = new PieChart(ctx,150);
+            
+            pieChart.init(data);
+            
+
+		};
+	</script>
+</html>

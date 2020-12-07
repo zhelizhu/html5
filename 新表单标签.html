@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>h5新表单标签</title>
+    <style>
+        input[type="range"]{
+
+            -webkit-appearance:button-bevel;
+            width: 500px;
+            color: red;
+            background: red;
+        }
+        
+    </style>
+</head>
+<body>
+    邮箱
+    <input type="email" name="" id="">
+    <br>
+    网址
+    <input type="url" name="" id="">
+    <br>
+    日期
+    <input type="date" name="" id="">
+    <br>
+    周
+    <input type="week" name="" id="">
+    <br>
+    时间
+    <input type="time" name="" id="">
+    <br>
+    月
+    <input type="month" name="" id="">
+    <br>
+    数字
+    <input type="number" name="" id="">
+    <br>
+    电话
+    <!-- 弹输入法 -->
+    <input type="tel" name="" id="">
+    <br>
+    搜索
+    <input type="search" name="" id="">
+    <br>
+    色板
+    <input type="color" name="" id="">
+    <br>
+    进度条
+    <!-- step：每次移动  -->
+    <input type="range" name="" id="range" value="10" step="2" max="200" min="10">    <span class="range"></span>
+
+
+    <script>
+        var range=document.querySelector('input[type="range"]')
+
+
+        var span=document.querySelector('.range')
+
+        console.log(span);
+
+        console.log(range);
+
+        range.oninput=function(){
+
+            console.log(this.value);
+
+            span.innerHTML=this.value
+
+        }
+    </script>
+</body>
+</html>

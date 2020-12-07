@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频音频</title>
+</head>
+
+<body>
+    <!-- src：地址 -->
+    <!-- autoplay:自动播放 -->
+    <!-- controls:控件 -->
+    <!-- loop:会不会重新播放 -->
+    <!-- preload:音频在页面加载时加载有autoplay时忽略 预加载-->
+    <!-- muted:设置静音 -->
+    <video src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7cdabcaa763392c86b944eaf4e68d6a3.mp4" width="500px" controls="controls"></video>
+
+    <audio src="./音乐/燕无歇.mp3" muted="muted" controls="controls" autoplay="autoplay" loop="loop">
+        <!-- 支持多格式 -->
+        <!-- <source src="mpeg">
+        <source src="ogg">
+        <source src="wav"> -->
+    </audio>
+
+    <!-- 谷歌浏览器不能实现自动播放音频 -->
+
+        <button>播放</button>
+        <button>暂停</button>
+    <script>
+        var video = document.querySelector('video')
+
+        var btns=document.querySelectorAll('button')
+
+        btns[0].onclick=function(){
+            video.play()
+
+            console.log(video.paused);
+
+            console.log(video.duration);
+            
+            console.log(video.currentTime);
+
+
+        }
+
+        btns[1].onclick=function(){
+            video.pause()
+
+            console.log(video.paused);
+
+            console.log(video.duration);
+
+            console.log(video.currentTime);
+        }
+        
+
+    </script>
+</body>
+
+</html>

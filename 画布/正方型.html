@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- 300 x 150 -->
+    <canvas width="700px" height="400px" style="background: #ccc;">你的浏览器不支持canvas
+        
+    </canvas>
+
+    <script>
+        var canvas=document.querySelector('canvas')
+
+        // console.log(canvas)
+
+        // console.dir(canvas)
+
+        var ctx = canvas.getContext('2d')
+
+        // console.log(ctx);
+
+        ctx.moveTo(100,100)
+
+        ctx.lineTo(300,100)
+
+        ctx.lineTo(300,300)
+
+        ctx.lineTo(100,300)
+
+        ctx.lineTo(100,100)
+
+        // 描边
+
+        // ctx.stroke()
+
+        // 填充
+        ctx.fill()
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3条不同颜色</title>
+</head>
+
+<body>
+    <canvas width="500px" height="400px" style="border: 1px solid red;"></canvas>
+
+    <script>
+        var canvas = document.querySelector('canvas')
+
+        var ctx = canvas.getContext('2d')
+
+        ctx.lineWidth = 10
+
+        ctx.beginPath()
+
+        ctx.strokeStyle = 'yellow'
+
+        ctx.moveTo(100, 100)
+
+        ctx.lineTo(300, 100)
+
+        ctx.stroke()
+
+        ctx.beginPath()
+
+        ctx.strokeStyle = 'red'
+
+        ctx.moveTo(100, 200)
+
+        ctx.lineTo(300, 200)
+
+        ctx.stroke()
+
+        ctx.beginPath()
+
+        ctx.strokeStyle = 'blue'
+
+        ctx.moveTo(100, 300)
+
+        ctx.lineTo(300, 300)
+
+        ctx.stroke()
+    </script>
+</body>
+
+</html>

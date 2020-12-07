@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arc</title>
+</head>
+
+<body>
+    <canvas width="500px" height="400px" style="border: 1px solid red;"></canvas>
+
+    <script>
+        var canvas = document.querySelector('canvas')
+
+        var ctx = canvas.getContext('2d')
+
+        var width = ctx.canvas.width
+
+        var height = ctx.canvas.height
+
+        ctx.moveTo(0,height/2)
+
+        ctx.lineTo(width,height/2)
+
+        ctx.moveTo(width/2,0)
+        
+        ctx.lineTo(width/2,height)
+
+        ctx.font="40px 微软雅黑"
+
+        ctx.textAlign='center'
+
+        ctx.textBaseline='middle'
+
+        ctx.fillText('JACK CC',width/2,height/2)
+
+
+
+        ctx.stroke()
+    </script>
+</body>
+
+</html>

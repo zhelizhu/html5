@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增事件</title>
+
+</head>
+
+<body>
+    <form action="" method="GET" id="form">
+        <fieldset>
+            <legend>账户信息</legend>
+            <p>用户名：<input type="text" required></p>
+            <p>密&nbsp;&nbsp;&nbsp;码：<input type="password" required></p>
+        </fieldset>
+
+        <fieldset>
+            <legend>用户信息</legend>
+            <p>
+                性别：
+                <input type="radio" name="" id="" checked='checked'>
+                <input type="radio">
+            </p>
+            <p>
+                爱好：
+                <input type="checkbox" name="" id="" checked="checked"> 唱歌
+                <input type="checkbox" name="" id=""> 跳舞
+                <input type="checkbox" name="" id=""> rap
+                <input type="checkbox" name="" id=""> 接化发
+                <input type="checkbox" name="" id=""> 打代码
+            </p>
+            <p><input type="submit" value="提交"></p>
+        </fieldset>
+
+
+
+    </form>
+    <!-- max需要完成的值 -->
+    <!-- value当前值 -->
+    <progress max="100" value="50"></progress> <span class="progress"></span>
+
+    <!-- 度量 -->
+    <meter max="100" min="0" value="0" high="80" low="40" id="meter"></meter>
+</body>
+<script>
+    var form = document.querySelector('#form')
+
+    form.oninput = function () {
+        console.log(this.value);
+    }
+
+    form.onchang = function () {
+        console.log(this.value);
+    }
+
+    form.onkeydown = function () {
+        console.log(this.value);
+    }
+
+    form.onkeyup = function () {
+        console.log(this.value);
+    }
+
+    form.onkeypress = function () {
+        console.log(this.value);
+    }
+
+    // 验证不通过触发
+    form.oninvalid=function(){
+        this.setCustomValidity("自己的提示信息")
+    }
+
+    var progress = document.querySelector('progress')
+
+    var span = document.querySelector('.progress')
+
+    var meter = document.querySelector('#meter')
+
+    var timer=setInterval(function(){
+        if(meter.value>100){
+            clearInterval(timer)
+        }
+        else{
+            var time = meter.value++
+            console.log(1);
+            span.innerHTML=time
+        }
+    },100)
+</script>
+
+</html>

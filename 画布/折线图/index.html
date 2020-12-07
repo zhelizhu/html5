@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折线图</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600px" height="400px">你的浏览器不支持canvas</canvas>
+
+    <script>
+        var canvas = document.querySelector('canvas')
+
+        var ctx = canvas.getContext('2d')
+
+        var width = ctx.canvas.width
+
+        var height = ctx.canvas.height
+
+        var gird = 10
+
+        var spacing = 20
+
+        var arrow = 10
+
+        var dotted = 8
+
+        var x = 20
+
+        var y = 380
+
+        for (var i = 1; i < (height / gird); i++) {
+            ctx.beginPath()
+            ctx.moveTo(0, gird * i - 0.5)
+            ctx.lineTo(width, gird * i - 0.5)
+            ctx.strokeStyle = '#ccc'
+            ctx.stroke()
+        }
+
+        for (var i = 1; i < (width / gird); i++) {
+            ctx.beginPath()
+            ctx.moveTo(gird * i - 0.5, 0)
+            ctx.lineTo(gird * i - 0.5, height)
+            ctx.strokeStyle = '#ccc'
+            ctx.stroke()
+        }
+
+        // x、y轴
+
+        function coordinate(newx, newy) {
+
+            x = newx
+
+            y = newy
+
+            ctx.strokeStyle = '#000'
+            // x轴
+            ctx.beginPath()
+            ctx.moveTo(x, y-0.5)
+            ctx.lineTo(width - spacing, y-0.5)
+            ctx.lineTo(width - spacing - arrow, y + arrow / 2)
+            ctx.lineTo(width - spacing - arrow, y - arrow / 2)
+            ctx.lineTo(width - spacing, y)
+            ctx.stroke()
+            ctx.fill()
+            // y轴
+            ctx.beginPath()
+            ctx.moveTo(x-0.5, y)
+            ctx.lineTo(spacing-0.5, spacing)
+            ctx.lineTo(spacing + arrow / 2, spacing + arrow)
+            ctx.lineTo(spacing - arrow / 2, spacing + arrow)
+            ctx.lineTo(spacing, spacing)
+            ctx.stroke()
+            ctx.fill()
+        }
+
+        function pointLine(data) {
+
+            var prex = 0
+            var prey = 0
+
+            for(var i=0;i<data.length;i++){
+
+                var cx = x + data[i].x
+                var cy = y - data[i].y
+
+                ctx.beginPath()
+                ctx.moveTo(cx - dotted / 2, cy - dotted / 2)
+                ctx.lineTo(cx + dotted / 2, cy - dotted / 2)
+                ctx.lineTo(cx + dotted / 2, cy + dotted / 2)
+                ctx.lineTo(cx - dotted / 2, cy + dotted / 2)
+                ctx.fill()
+
+                if (i == 0) {
+                    ctx.beginPath()
+                    ctx.moveTo(x, y)
+                    ctx.lineTo(cx, cy)
+                } else {
+                    ctx.beginPath()
+                    ctx.moveTo(prex, prey)
+                    ctx.lineTo(cx, cy)
+                }
+                ctx.stroke()
+                prex = cx
+                prey = cy
+            }
+        }
+
+
+        var point = [{
+                x: 100,
+                y: 120
+            },
+            {
+                x: 200,
+                y: 160
+            },
+            {
+                x: 300,
+                y: 240
+            },
+            {
+                x: 400,
+                y: 320
+            },
+            {
+                x: 500,
+                y: 80
+            }
+        ]
+
+        coordinate(x, y)
+        pointLine(point)
+    </script>
+</body>
+
+</html>

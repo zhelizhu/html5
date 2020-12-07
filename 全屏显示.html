@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全屏显示</title>
+    <style>
+        img {
+            width: 500px;
+        }
+
+        .container {
+            width: 500px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="img/1.jpg" alt="">
+
+        <button>全屏</button>
+
+        <button>取消全屏</button>
+
+        <button>判断是否全屏</button>
+    </div>
+
+
+    <script>
+        var img = document.querySelector('img')
+
+        var btns = document.querySelectorAll('button')
+
+        var container = document.querySelector('.container')
+
+        btns[0].onclick = function () {
+            container.requestFullscreen()
+        }
+
+        btns[1].onclick = function () {
+            document.exitFullscreen()
+        }
+
+        // 判断是否全屏
+
+        btns[2].onclick=function(){
+            console.log(document.fullscreenElement);
+        }
+
+    </script>
+</body>
+
+</html>

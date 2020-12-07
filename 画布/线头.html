@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>线头</title>
+</head>
+
+<body>
+    <canvas width="500px" height="400px" style="border: 1px solid red;"></canvas>
+
+    <script>
+        var canvas = document.querySelector('canvas')
+
+        var ctx = canvas.getContext('2d')
+
+        ctx.beginPath()
+
+
+        // 设置
+        ctx.setLineDash([5,20])
+        // 获取
+        console.log(ctx.getLineDash());
+
+        console.log(ctx.lineDashOffset=10);
+
+
+        ctx.moveTo(100, 100)
+
+        ctx.lineTo(300, 100)
+
+        // ctx.lineTo(300, 200)
+
+        ctx.lineWidth = 10
+
+        // // 折角园
+        // ctx.lineJoin = 'round'
+
+        // // 折角平
+
+        // ctx.lineJoin = 'bevel'
+
+        // // 圆头
+        // ctx.lineCap = 'round'
+        // // 方形
+        // ctx.lineCap = 'square'
+
+        // 线条类型
+
+
+        // 绘制矩形
+
+        ctx.rect(200,200,100,100)
+
+        // ctx.arc(50,50,300)
+
+
+
+        ctx.stroke()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileReader</title>
+</head>
+
+<body>
+    <input type="file" name="file" id="file" multiple>
+
+
+    <script>
+        var file = document.querySelector('#file')
+
+        file.onchange = function (e) {
+
+            var fileReader = new FileReader()
+
+            for (let i = 0; i < e.target.files.length; i++) {
+
+                (function (index) {
+
+                    setTimeout(function () {
+                        
+                        fileReader.readAsDataURL(e.target.files[i])
+
+                        fileReader.onload = function () {
+
+                            var img = document.createElement('img')
+
+                            img.src = fileReader.result
+
+                            document.body.append(img)
+                        }
+
+                    },200*index)
+
+                })(i)
+            }
+        }
+    </script>
+</body>
+
+</html>
